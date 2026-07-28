@@ -52,8 +52,8 @@ Key architectural decisions are documented in [`docs/adr/`](docs/adr/) and the f
 
 | Layer      | Technology                           |
 | ---------- | ------------------------------------ |
-| Framework  | React Native + Expo SDK 55           |
-| Language   | TypeScript 5.x                       |
+| Framework  | React Native + Expo SDK 57           |
+| Language   | TypeScript 6.x (strict mode)         |
 | Navigation | React Navigation 7.x                 |
 | State      | React Context + Zustand (sync queue) |
 | Database   | SQLite via `expo-sqlite`             |
@@ -62,7 +62,7 @@ Key architectural decisions are documented in [`docs/adr/`](docs/adr/) and the f
 | i18n       | react-i18next + expo-localization    |
 | Logging    | Custom LoggerFactory + transports    |
 | Testing    | Jest                                 |
-| Linting    | ESLint (flat config) + Prettier      |
+| Linting    | ESLint 10 (flat config) + Prettier   |
 
 ---
 
@@ -103,7 +103,21 @@ yarn test:coverage     # With coverage report
 yarn lint              # ESLint + type check
 yarn lint:fix          # Auto-fix
 yarn format            # Prettier
+yarn doctor            # Expo Doctor — verify project health
 ```
+
+---
+
+## Recent Changes — Expo SDK 57 Migration
+
+The project has been upgraded to **Expo SDK 57**, **TypeScript 6.x** (strict mode), and **ESLint 10**:
+
+- **Expo SDK 57** — Upgraded all Expo packages; splash screen migrated to config plugin (`expo-splash-screen`); installed `@expo/vector-icons` and `expo-font` as peer dependencies
+- **TypeScript strict mode** — Enabled `"strict": true` in `tsconfig.json`; fixed 107 type errors across ~50 files (catch-block type guards, SQLite bind param types, null/undefined assignments, spread-on-unknown)
+- **ESLint 10** — Migrated from `eslint-plugin-react` / `eslint-plugin-react-native` (incompatible with ESLint 10); fixed 24 rule violations (`preserve-caught-error`, `no-useless-assignment`, formatting)
+- **Deprecated API replacements** — `StyleSheet.absoluteFillObject` → `absoluteFill` (removed in RN 0.86)
+
+Run `yarn doctor` to verify the project passes all 20 Expo Doctor checks.
 
 ---
 
