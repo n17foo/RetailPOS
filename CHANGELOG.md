@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://github.com/n17foo/retailpos/compare/v0.5.2...v0.5.3) (2026-07-28)
+
+### Bug Fixes
+
+- migrate to Expo SDK 57, TypeScript 6 strict mode, and ESLint 10 ([7ab606c](https://github.com/n17foo/retailpos/commit/7ab606c8f4da6ed4dcd1f481c7686542ee8eebd4))
+
 ### [0.5.2](https://github.com/n17foo/retailpos/compare/v0.5.1...v0.5.2) (2026-07-05)
 
 ### Features
