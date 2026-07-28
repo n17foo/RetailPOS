@@ -80,7 +80,7 @@ export class WooCommerceCategoryService extends BaseCategoryService {
       return this.mapWooCommerceCategory(newCategory);
     } catch (error) {
       this.logger.error({ message: 'Error creating WooCommerce category:' }, error instanceof Error ? error : new Error(String(error)));
-      throw new Error(`Failed to create category: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Failed to create category: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error });
     }
   }
 
@@ -108,7 +108,7 @@ export class WooCommerceCategoryService extends BaseCategoryService {
         { message: `Error updating WooCommerce category ${categoryId}:` },
         error instanceof Error ? error : new Error(String(error))
       );
-      throw new Error(`Failed to update category: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Failed to update category: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error });
     }
   }
 

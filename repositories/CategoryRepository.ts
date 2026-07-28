@@ -124,9 +124,9 @@ export class CategoryRepository {
     const fields = Object.keys(data).filter(key => key !== 'id' && key !== 'created_at');
     if (fields.length === 0) return;
 
-    const values = fields.map(key => data[key as keyof typeof data]);
+    const values = fields.map(key => data[key as keyof typeof data] as string | number | boolean);
     const statement = `UPDATE categories SET ${fields.map(field => `${field} = ?`).join(', ')}, updated_at = ? WHERE id = ?`;
-    await db.runAsync(statement, [...values, now, id]);
+    await db.runAsync(statement, [...values, now, id] as (string | number | boolean)[]);
   }
 
   async delete(id: string): Promise<void> {

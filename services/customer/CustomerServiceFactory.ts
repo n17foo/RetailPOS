@@ -44,7 +44,7 @@ export class CustomerServiceFactory {
       return this.services.get(platform)!;
     }
 
-    let service: CustomerServiceInterface | null = null;
+    let service: CustomerServiceInterface | null;
 
     switch (platform) {
       case ECommercePlatform.SHOPIFY:

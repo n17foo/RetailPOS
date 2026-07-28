@@ -237,7 +237,7 @@ export function composeMoreMenu(input: MoreMenuComposerInput): ComposedMenuItem[
       label: def.label,
       icon: def.icon,
       route: def.route,
-      status: result.status,
+      status: result.status as MenuItemStatus,
       reason: result.reason,
       setupGroup: def.setupGroup,
       color: def.color,

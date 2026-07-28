@@ -303,7 +303,7 @@ export class ServiceConfigBridge {
       }
       this.logger.info(`CategoryService cache cleared for ${platform}`);
     } catch (err) {
-      this.logger.warn({ message: `Could not reset CategoryService for ${platform}`, ...err });
+      this.logger.warn({ message: `Could not reset CategoryService for ${platform}`, ...(err as Record<string, unknown>) });
     }
     void config; // config used by the service's own initialize() via process.env
   }
@@ -318,7 +318,7 @@ export class ServiceConfigBridge {
       CustomerServiceFactory.getInstance().getService(platform);
       this.logger.info(`CustomerService warmed up for ${platform}`);
     } catch (err) {
-      this.logger.warn({ message: `Could not warm up CustomerService for ${platform}`, ...err });
+      this.logger.warn({ message: `Could not warm up CustomerService for ${platform}`, ...(err as Record<string, unknown>) });
     }
   }
 

@@ -1,3 +1,4 @@
+import { PlatformSearchConfig, PlatformSearchServiceInterface } from './platforms/PlatformSearchServiceInterface';
 import { SearchServiceInterface } from './SearchServiceInterface';
 import { CompositeSearchService } from './platforms/CompositeSearchService';
 import { ShopifySearchService } from './platforms/ShopifySearchService';
@@ -8,7 +9,6 @@ import { SyliusSearchService } from './platforms/SyliusSearchService';
 import { MagentoSearchService } from './platforms/MagentoSearchService';
 import { OfflineSearchService } from './platforms/OfflineSearchService';
 import { CommerceFullSearchService } from './platforms/CommerceFullSearchService';
-import { PlatformSearchConfig } from './platforms/PlatformSearchServiceInterface';
 
 /**
  * Factory for creating and managing search service instances.
@@ -56,7 +56,7 @@ export class SearchServiceFactory {
    */
   public configureService(platformConfigs: Record<string, PlatformSearchConfig>): void {
     // Create platform services with the provided configurations
-    const platformServices = [];
+    const platformServices: PlatformSearchServiceInterface[] = [];
 
     // Create Shopify service if config is provided
     if (platformConfigs.shopify) {
@@ -96,11 +96,11 @@ export class SearchServiceFactory {
 
     // PrestaShop and Squarespace use the offline search service (no dedicated search implementation)
     if (platformConfigs.prestashop) {
-      platformServices.push(new OfflineSearchService());
+      platformServices.push(new OfflineSearchService() as unknown as PlatformSearchServiceInterface);
     }
 
     if (platformConfigs.squarespace) {
-      platformServices.push(new OfflineSearchService());
+      platformServices.push(new OfflineSearchService() as unknown as PlatformSearchServiceInterface);
     }
 
     // Create CommerceFull service if config is provided
@@ -111,7 +111,7 @@ export class SearchServiceFactory {
 
     // Create Offline service if config is provided
     if (platformConfigs.offline) {
-      platformServices.push(new OfflineSearchService());
+      platformServices.push(new OfflineSearchService() as unknown as PlatformSearchServiceInterface);
     }
 
     // Create a new composite service with configured platforms
@@ -123,7 +123,7 @@ export class SearchServiceFactory {
    * Create platform-specific search services based on available configuration
    */
   private createPlatformServices() {
-    const platformServices = [];
+    const platformServices: PlatformSearchServiceInterface[] = [];
 
     // Check for Shopify configuration
     const hasShopifyConfig = process.env.SHOPIFY_API_KEY && process.env.SHOPIFY_ACCESS_TOKEN;

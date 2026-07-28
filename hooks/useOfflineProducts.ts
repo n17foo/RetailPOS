@@ -46,7 +46,7 @@ export const useOfflineProducts = (): UseOfflineProductsReturn => {
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to create product';
         setError(message);
-        throw new Error(message);
+        throw new Error(message, { cause: err });
       } finally {
         setIsLoading(false);
       }
@@ -65,7 +65,7 @@ export const useOfflineProducts = (): UseOfflineProductsReturn => {
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to update product';
         setError(message);
-        throw new Error(message);
+        throw new Error(message, { cause: err });
       } finally {
         setIsLoading(false);
       }

@@ -114,7 +114,7 @@ const PaymentSettingsTab = () => {
         metadata: { settingName: 'payment', provider: paymentSettings.provider },
       });
     } catch (err) {
-      logger.error('Failed to save payment settings:', err);
+      logger.error('Failed to save payment settings:', err instanceof Error ? err : new Error(String(err)));
     }
   }, [saveSettings, paymentSettings, user, logger, t]);
 
@@ -130,7 +130,7 @@ const PaymentSettingsTab = () => {
         success ? t('settings.payment.connectionSuccess') : t('settings.payment.connectionError')
       );
     } catch (err) {
-      logger.error('Connection test failed:', err);
+      logger.error('Connection test failed:', err instanceof Error ? err : new Error(String(err)));
       Alert.alert(t('common.error'), t('settings.payment.connectionTestFailed'));
     }
   }, [testConnection, paymentSettings.provider, t, logger]);

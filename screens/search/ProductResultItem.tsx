@@ -12,7 +12,7 @@ interface ProductResultItemProps {
 
 export const ProductResultItem: React.FC<ProductResultItemProps> = ({ product, onSelect }) => {
   const currency = useCurrency();
-  let imageSource: ImageSourcePropType = null;
+  let imageSource: ImageSourcePropType | undefined;
   if (product.imageUrl) {
     imageSource = { uri: product.imageUrl };
   }

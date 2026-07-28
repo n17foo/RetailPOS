@@ -345,13 +345,13 @@ export class WooCommerceProductService extends BaseProductService {
     };
 
     // Map images
-    const images = product.images.map(img => ({
+    const images = (product.images || []).map(img => ({
       src: img.url,
       alt: img.alt,
     }));
 
     // Map categories from tags
-    const categories = product.tags.map(tag => ({
+    const categories = (product.tags || []).map(tag => ({
       name: tag,
     }));
 

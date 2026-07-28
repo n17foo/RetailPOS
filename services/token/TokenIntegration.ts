@@ -364,7 +364,7 @@ export async function withTokenRefresh<T>(platform: ECommercePlatform, apiCallFn
         // Force token refresh and try again
         const newToken = await getPlatformToken(platform, TokenType.ACCESS, true);
         if (!newToken) {
-          throw new Error(`Failed to refresh token for ${platform}`);
+          throw new Error(`Failed to refresh token for ${platform}`, { cause: error });
         }
 
         // Retry with new token

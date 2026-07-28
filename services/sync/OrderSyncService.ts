@@ -88,7 +88,7 @@ export class OrderSyncService implements OrderSyncServiceInterface {
       };
 
       const createdOrder = await orderService.createOrder(platformOrder);
-      await this.orderRepo.updateSyncSuccess(orderId, createdOrder.id ?? createdOrder.platformOrderId);
+      await this.orderRepo.updateSyncSuccess(orderId, createdOrder.id ?? createdOrder.platformOrderId ?? '');
       this.dispatchKdsTicket(localOrder);
 
       return {

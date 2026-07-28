@@ -181,7 +181,7 @@ export class BigCommerceProductService extends BaseProductService {
         return this.mapToProduct(createdProduct.data);
       } catch (error) {
         this.logger.error({ message: 'Error creating product on BigCommerce' }, error instanceof Error ? error : new Error(String(error)));
-        throw new Error(`Failed to create product: ${error instanceof Error ? error.message : String(error)}`);
+        throw new Error(`Failed to create product: ${error instanceof Error ? error.message : String(error)}`, { cause: error });
       }
     });
   }
@@ -211,7 +211,7 @@ export class BigCommerceProductService extends BaseProductService {
           { message: `Error updating product ${productId} on BigCommerce` },
           error instanceof Error ? error : new Error(String(error))
         );
-        throw new Error(`Failed to update product: ${error instanceof Error ? error.message : String(error)}`);
+        throw new Error(`Failed to update product: ${error instanceof Error ? error.message : String(error)}`, { cause: error });
       }
     });
   }

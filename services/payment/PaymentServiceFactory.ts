@@ -105,7 +105,7 @@ export class PaymentServiceFactory {
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
       this.logger.error({ message: 'Failed to initialize payment service' }, error instanceof Error ? error : new Error(msg));
-      throw new Error(`Failed to initialize payment service: ${msg}`);
+      throw new Error(`Failed to initialize payment service: ${msg}`, { cause: error });
     }
   }
 

@@ -96,7 +96,10 @@ export class UnifiedPrinterService extends AbstractPrinterService {
         }
       } catch (importError) {
         this.logger.warn('Failed to import printer modules:', importError);
-        throw new Error('Failed to initialize printer modules: ' + importError.message);
+        throw new Error(
+          'Failed to initialize printer modules: ' + (importError instanceof Error ? importError.message : String(importError)),
+          { cause: importError }
+        );
       }
 
       switch (config.printerType) {
@@ -159,7 +162,7 @@ export class UnifiedPrinterService extends AbstractPrinterService {
       // Safely access the printer type using a type guard
       const printerTypeName = config && 'printerType' in config ? String(config.printerType) : 'unknown';
 
-      this.logger.error(`Failed to connect to ${printerTypeName} printer:`, error);
+      this.logger.error(`Failed to connect to ${printerTypeName} printer:`, error instanceof Error ? error : new Error(String(error)));
       this._isConnected = false;
       this.printerInstance = null;
       return false;
@@ -377,7 +380,7 @@ export class UnifiedPrinterService extends AbstractPrinterService {
         errorMessage: 'Printer connection lost',
       };
     } catch (error) {
-      this.logger.error('Failed to get printer status:', error);
+      this.logger.error('Failed to get printer status:', error instanceof Error ? error : new Error(String(error)));
       return {
         isOnline: false,
         hasPaper: false,
@@ -439,7 +442,7 @@ export class UnifiedPrinterService extends AbstractPrinterService {
         this.printerInstance = null;
         this.printerType = null;
       } catch (error) {
-        this.logger.error('Error disconnecting from printer:', error);
+        this.logger.error('Error disconnecting from printer:', error instanceof Error ? error : new Error(String(error)));
       }
     }
 

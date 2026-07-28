@@ -111,11 +111,11 @@ export class ShopifyDiscountService extends BaseDiscountService {
 
       if (priceRule.value_type === 'fixed_amount') {
         discountType = 'fixed';
-        discountValue = Math.round(parseFloat(priceRule.value) * 100); // Convert to cents
+        discountValue = Math.round(parseFloat(priceRule.value || '0') * 100); // Convert to cents
         discountAmount = this.calculateDiscountAmount(discountType, discountValue, subtotal);
       } else if (priceRule.value_type === 'percentage') {
         discountType = 'percentage';
-        discountValue = Math.abs(parseFloat(priceRule.value)); // Shopify uses negative values
+        discountValue = Math.abs(parseFloat(priceRule.value || '0')); // Shopify uses negative values
         discountAmount = this.calculateDiscountAmount(discountType, discountValue, subtotal);
       }
 

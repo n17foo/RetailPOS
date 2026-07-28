@@ -63,7 +63,10 @@ export class AuthConfigService {
         this.mode = storedMode;
       }
     } catch (err) {
-      this.logger.error('[AuthConfigService] Failed to parse persisted config, using defaults:', err);
+      this.logger.error(
+        '[AuthConfigService] Failed to parse persisted config, using defaults:',
+        err instanceof Error ? err : new Error(String(err))
+      );
     }
 
     this.loaded = true;

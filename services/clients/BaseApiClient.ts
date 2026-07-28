@@ -152,7 +152,7 @@ export abstract class BaseApiClient<TConfig extends BaseApiClientConfig = BaseAp
     } catch (error: any) {
       clearTimeout(timeout);
       if (error.name === 'AbortError') {
-        throw new Error(`Request timeout: ${method} ${url}`);
+        throw new Error(`Request timeout: ${method} ${url}`, { cause: error });
       }
       throw error;
     }

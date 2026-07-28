@@ -57,7 +57,7 @@ export class PlatformCapabilityService {
       this.cachedPlatform = platform;
       this.logger.info({ message: `Platform capability loaded: ${platform}` });
     } catch (err) {
-      this.logger.warn({ message: 'Failed to load platform from storage, defaulting to offline', ...err });
+      this.logger.warn({ message: 'Failed to load platform from storage, defaulting to offline', ...(err as Record<string, unknown>) });
       this.cachedPlatform = ECommercePlatform.OFFLINE;
     } finally {
       this.isLoading = false;

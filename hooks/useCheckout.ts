@@ -318,7 +318,7 @@ export function useCheckout({ platform, onSuccess }: UseCheckoutOptions = {}) {
           }
         } catch (err) {
           // Receipt printing is best-effort
-          logger.error(err);
+          logger.error(err instanceof Error ? err.message : String(err));
         }
 
         setSplitMode(false);

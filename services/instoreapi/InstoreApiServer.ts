@@ -66,7 +66,7 @@ export class InstoreApiServer {
       this.logger.info(`Local API server started on port ${instoreApiConfig.current.port}`);
     } catch (error) {
       this.running = false;
-      this.logger.error('Failed to start HTTP transport:', error);
+      this.logger.error('Failed to start HTTP transport:', error instanceof Error ? error : new Error(String(error)));
       throw error;
     }
   }
@@ -79,7 +79,7 @@ export class InstoreApiServer {
       await instoreApiTransport.stop();
       this.logger.info('Local API server stopped');
     } catch (error) {
-      this.logger.error('Failed to stop HTTP transport:', error);
+      this.logger.error('Failed to stop HTTP transport:', error instanceof Error ? error : new Error(String(error)));
       throw error;
     }
   }

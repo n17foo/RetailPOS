@@ -77,7 +77,7 @@ export class InstoreApiTransport {
       this.listening = true;
       this.logger.info(`HTTP transport started on port ${port}`);
     } catch (error) {
-      this.logger.error('Failed to start HTTP transport:', error);
+      this.logger.error('Failed to start HTTP transport:', error instanceof Error ? error : new Error(String(error)));
       throw error;
     }
   }
@@ -100,7 +100,7 @@ export class InstoreApiTransport {
       this.listening = false;
       this.logger.info('HTTP transport stopped');
     } catch (error) {
-      this.logger.error('Failed to stop HTTP transport:', error);
+      this.logger.error('Failed to stop HTTP transport:', error instanceof Error ? error : new Error(String(error)));
       throw error;
     }
   }
@@ -148,7 +148,7 @@ export class InstoreApiTransport {
 
       this.logger.debug(`${method} ${path} → ${response.status}`);
     } catch (error) {
-      this.logger.error('Error handling HTTP request:', error);
+      this.logger.error('Error handling HTTP request:', error instanceof Error ? error : new Error(String(error)));
 
       // Send error response
       try {
@@ -158,7 +158,10 @@ export class InstoreApiTransport {
         };
         httpBridge.respond(request.requestId, 500, 'application/json', JSON.stringify(errorResponse));
       } catch (responseError) {
-        this.logger.error('Failed to send error response:', responseError);
+        this.logger.error(
+          'Failed to send error response:',
+          responseError instanceof Error ? responseError : new Error(String(responseError))
+        );
       }
     }
   }

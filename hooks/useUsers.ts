@@ -56,7 +56,7 @@ export const useUsers = (): UseUsersReturn => {
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to create user';
         setError(message);
-        throw new Error(message);
+        throw new Error(message, { cause: err });
       } finally {
         setIsLoading(false);
       }

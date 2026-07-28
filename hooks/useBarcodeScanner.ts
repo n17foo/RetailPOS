@@ -217,7 +217,7 @@ export const useBarcodeScanner = ({ scannerSettings, products, onScanSuccess }: 
 
         // Connect to the scanner
         const deviceId = settingsType === 'camera' ? 'back' : settingsDeviceId;
-        const isConnected = await scannerService.connect(deviceId);
+        const isConnected = await scannerService.connect(deviceId || '');
         setConnected(isConnected);
 
         if (!isConnected) {

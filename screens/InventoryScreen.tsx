@@ -64,20 +64,20 @@ const InventoryScreen: React.FC<InventoryScreenProps> = ({ onGoBack }) => {
 
           return {
             productId: item.productId,
-            variantId: item.variantId,
+            variantId: item.variantId || undefined,
             name: product?.name || 'Unknown Product',
             sku: item.sku || product?.sku,
             quantity: item.quantity,
             lowStockThreshold: LOW_STOCK_THRESHOLD,
             reorderPoint: reorderConfig?.reorder_point,
             reorderQty: reorderConfig?.reorder_qty,
-            defaultVendorId: reorderConfig?.default_vendor_id,
+            defaultVendorId: reorderConfig?.default_vendor_id || undefined,
           };
         });
         setInventoryItems(items);
       }
     } catch (err) {
-      logger.error('Error loading inventory:', err);
+      logger.error('Error loading inventory:', err instanceof Error ? err : new Error(String(err)));
     }
   }, [ecommerceInitialized, products, getInventory, logger]);
 
@@ -188,7 +188,7 @@ const InventoryScreen: React.FC<InventoryScreenProps> = ({ onGoBack }) => {
       );
     } catch (err) {
       Alert.alert('Error', 'Failed to create purchase order');
-      logger.error('Error creating PO:', err);
+      logger.error('Error creating PO:', err instanceof Error ? err : new Error(String(err)));
     }
   };
 

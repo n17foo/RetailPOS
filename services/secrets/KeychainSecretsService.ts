@@ -40,7 +40,7 @@ export class KeychainSecretsService implements SecretsServiceInterface {
   private async initializeKeychain(): Promise<void> {
     try {
       // Check if we're in Expo Go - if so, don't even try to load the native module
-      const isExpoGo = process.env.EXPO_RUNTIME === 'expo' || global.__expo !== undefined;
+      const isExpoGo = process.env.EXPO_RUNTIME === 'expo' || (global as Record<string, unknown>).__expo !== undefined;
       if (isExpoGo) {
         this.logger.info('Running in Expo Go - not loading native keychain module');
         this.initialized = false;

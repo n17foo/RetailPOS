@@ -21,7 +21,7 @@ export function useCashDrawerStatus(drawerService: CashDrawerServiceInterface | 
       const status = await drawerService.isOpen();
       setIsOpen(status);
     } catch (error) {
-      logger.error('Failed to check drawer status:', error);
+      logger.error('Failed to check drawer status:', error instanceof Error ? error : new Error(String(error)));
       setIsOpen(undefined);
     }
   }, [drawerService, logger]);

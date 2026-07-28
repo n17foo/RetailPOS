@@ -100,7 +100,7 @@ export const StripeTerminalBridgeProvider: React.FC<{ children: ReactNode }> = (
       const { secret } = await response.json();
       return secret;
     } catch (error) {
-      logger.error('Failed to fetch Stripe connection token:', error);
+      logger.error('Failed to fetch Stripe connection token:', error instanceof Error ? error : new Error(String(error)));
       throw error;
     }
   };

@@ -46,7 +46,7 @@ export const useOfflineCategories = (): UseOfflineCategoriesReturn => {
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to create category';
         setError(message);
-        throw new Error(message);
+        throw new Error(message, { cause: err });
       } finally {
         setIsLoading(false);
       }
@@ -65,7 +65,7 @@ export const useOfflineCategories = (): UseOfflineCategoriesReturn => {
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to update category';
         setError(message);
-        throw new Error(message);
+        throw new Error(message, { cause: err });
       } finally {
         setIsLoading(false);
       }

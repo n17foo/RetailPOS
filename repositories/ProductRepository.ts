@@ -20,7 +20,18 @@ export class ProductRepository {
     const id = generateUUID();
     const result = await db.runAsync(
       'INSERT INTO products (id, name, description, price, sku, barcode, category_id, stock, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [id, product.name, product.description, product.price, product.sku, product.barcode, product.category_id, product.stock, now, now]
+      [
+        id,
+        product.name,
+        product.description,
+        product.price,
+        product.sku,
+        product.barcode,
+        product.category_id,
+        product.stock,
+        now,
+        now,
+      ] as (string | number | boolean)[]
     );
     return result.lastInsertRowId.toString();
   }
@@ -36,10 +47,10 @@ export class ProductRepository {
   async update(id: string, data: Partial<Product>): Promise<void> {
     const now = Date.now();
     const fields = Object.keys(data).filter(key => key !== 'id');
-    const values = fields.map(key => data[key as keyof typeof data]);
+    const values = fields.map(key => data[key as keyof typeof data] as string | number | boolean);
     const statement = `UPDATE products SET ${fields.map(field => `${field} = ?`).join(', ')}, updated_at = ? WHERE id = ?`;
 
-    await db.runAsync(statement, [...values, now, id]);
+    await db.runAsync(statement, [...values, now, id] as (string | number | boolean)[]);
   }
 
   async delete(id: string): Promise<void> {

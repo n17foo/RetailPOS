@@ -24,11 +24,11 @@ export class OfflineInventoryService implements InventoryServiceInterface {
       if (storedInventory) {
         const parsed = JSON.parse(storedInventory);
         this.inventory = new Map(
-          Object.entries(parsed).map(([key, value]: [string, { quantity: number; sku?: string; updatedAt?: string }]) => [
+          Object.entries(parsed).map(([key, value]: [string, unknown]) => [
             key,
             {
-              ...value,
-              updatedAt: value.updatedAt ? new Date(value.updatedAt) : new Date(),
+              ...(value as { quantity: number; sku?: string; updatedAt?: string }),
+              updatedAt: (value as { updatedAt?: string })?.updatedAt ? new Date((value as { updatedAt?: string }).updatedAt!) : new Date(),
             },
           ])
         );

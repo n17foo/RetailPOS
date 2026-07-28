@@ -171,7 +171,7 @@ export function PrinterDiscoveryModal({ visible, onClose, onSelectPrinter }: Pri
               <FlatList
                 data={printers}
                 renderItem={renderPrinterItem}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id || item.printerName}
                 contentContainerStyle={styles.listContent}
                 ListHeaderComponent={
                   <Text style={[styles.listHeader, { color: colors.textSecondary }]}>

@@ -52,7 +52,7 @@ export function useOrderHistory(): UseOrderHistoryReturn {
       const filtered = filterAndSortOrders(allOrders, rowIds);
       setOrders(filtered);
     } catch (error) {
-      logger.error('Failed to load orders:', error);
+      logger.error('Failed to load orders:', error instanceof Error ? error : new Error(String(error)));
       Alert.alert('Error', 'Failed to load orders');
     } finally {
       setIsLoading(false);
@@ -89,7 +89,7 @@ export function useOrderHistory(): UseOrderHistoryReturn {
           Alert.alert('Sync Failed', result.error || 'Unknown error occurred');
         }
       } catch (error) {
-        logger.error('Failed to resync order:', error);
+        logger.error('Failed to resync order:', error instanceof Error ? error : new Error(String(error)));
         Alert.alert('Error', 'Failed to resync order');
       } finally {
         setSyncingOrderId(null);
@@ -111,7 +111,7 @@ export function useOrderHistory(): UseOrderHistoryReturn {
               await loadOrders();
               Alert.alert('Deleted', 'Order removed successfully');
             } catch (error) {
-              logger.error('Failed to delete order:', error);
+              logger.error('Failed to delete order:', error instanceof Error ? error : new Error(String(error)));
               Alert.alert('Error', 'Failed to delete order');
             }
           },

@@ -88,7 +88,7 @@ export const useSyncStore = create<SyncStoreState>()(
               body: action.body ? JSON.stringify(action.body) : undefined,
               headers: {
                 'Content-Type': 'application/json',
-                'X-Request-ID': action.requestId,
+                'X-Request-ID': action.requestId || '',
                 ...action.headers,
               },
             });

@@ -94,11 +94,11 @@ export class TaxProfileRepository {
     }
     if (input.region !== undefined) {
       sets.push('region = ?');
-      values.push(input.region);
+      values.push(input.region ?? '');
     }
     if (input.description !== undefined) {
       sets.push('description = ?');
-      values.push(input.description);
+      values.push(input.description ?? '');
     }
 
     if (sets.length === 0) return;

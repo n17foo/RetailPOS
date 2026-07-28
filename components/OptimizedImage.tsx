@@ -3,7 +3,7 @@ import { Image as ExpoImage, ImageSource, ImageContentFit } from 'expo-image';
 import { StyleProp, ImageStyle, ImageSourcePropType } from 'react-native';
 
 interface OptimizedImageProps {
-  source: ImageSourcePropType;
+  source: ImageSourcePropType | null;
   priority?: 'low' | 'normal' | 'high';
   resizeMode?: 'contain' | 'cover' | 'stretch' | 'center';
   style?: StyleProp<ImageStyle>;

@@ -229,7 +229,7 @@ const SaleScreen: React.FC<SaleScreenProps> = ({ username = 'User' }) => {
       )}
       <View style={styles.content}>{renderProductArea()}</View>
       <Category />
-      <Basket platform={currentPlatform} />
+      <Basket platform={currentPlatform || undefined} />
     </View>
   );
 };

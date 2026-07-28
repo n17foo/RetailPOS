@@ -38,7 +38,7 @@ export function useSaleScreen() {
     products,
     isLoading: isProductLoading,
     loadMore,
-  } = useProductsForDisplay(currentPlatform, selectedCategory, selectedCategoryName);
+  } = useProductsForDisplay(currentPlatform || undefined, selectedCategory, selectedCategoryName);
 
   const filteredProducts = searchQuery ? products.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase())) : products;
 

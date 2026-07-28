@@ -275,7 +275,7 @@ export class BigCommerceSyncService extends BasePlatformSyncService {
               stats.failed++;
               stats.errors.push({
                 entityId: options.entityIds[i],
-                message: `Failed to sync product: ${error.message || 'Unknown error'}`,
+                message: `Failed to sync product: ${(error instanceof Error ? error.message : String(error)) || 'Unknown error'}`,
                 details: error,
               });
             }
@@ -304,7 +304,7 @@ export class BigCommerceSyncService extends BasePlatformSyncService {
               stats.failed++;
               stats.errors.push({
                 entityId: `bc-product-${i}`,
-                message: `Failed to sync product to POS: ${error.message || 'Unknown error'}`,
+                message: `Failed to sync product to POS: ${(error instanceof Error ? error.message : String(error)) || 'Unknown error'}`,
                 details: error,
               });
             }
@@ -316,7 +316,7 @@ export class BigCommerceSyncService extends BasePlatformSyncService {
         }
       }
     } catch (error) {
-      stats.warnings.push(`Error in BigCommerce product sync: ${error.message}`);
+      stats.warnings.push(`Error in BigCommerce product sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -357,7 +357,7 @@ export class BigCommerceSyncService extends BasePlatformSyncService {
         stats.warnings.push('BigCommerce inventory sync from platform to POS is handled as part of product sync');
       }
     } catch (error) {
-      stats.warnings.push(`Error in BigCommerce inventory sync: ${error.message}`);
+      stats.warnings.push(`Error in BigCommerce inventory sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -390,7 +390,7 @@ export class BigCommerceSyncService extends BasePlatformSyncService {
               stats.failed++;
               stats.errors.push({
                 entityId: `bc-category-${i}`,
-                message: `Failed to sync category: ${error.message || 'Unknown error'}`,
+                message: `Failed to sync category: ${(error instanceof Error ? error.message : String(error)) || 'Unknown error'}`,
                 details: error,
               });
             }
@@ -423,7 +423,7 @@ export class BigCommerceSyncService extends BasePlatformSyncService {
               stats.failed++;
               stats.errors.push({
                 entityId: options.entityIds[i],
-                message: `Failed to sync category: ${error.message || 'Unknown error'}`,
+                message: `Failed to sync category: ${(error instanceof Error ? error.message : String(error)) || 'Unknown error'}`,
                 details: error,
               });
             }
@@ -435,7 +435,7 @@ export class BigCommerceSyncService extends BasePlatformSyncService {
         }
       }
     } catch (error) {
-      stats.warnings.push(`Error in BigCommerce category sync: ${error.message}`);
+      stats.warnings.push(`Error in BigCommerce category sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -466,7 +466,7 @@ export class BigCommerceSyncService extends BasePlatformSyncService {
               stats.failed++;
               stats.errors.push({
                 entityId: `bc-order-${i}`,
-                message: `Failed to sync order: ${error.message || 'Unknown error'}`,
+                message: `Failed to sync order: ${(error instanceof Error ? error.message : String(error)) || 'Unknown error'}`,
                 details: error,
               });
             }
@@ -488,7 +488,7 @@ export class BigCommerceSyncService extends BasePlatformSyncService {
         }
       }
     } catch (error) {
-      stats.warnings.push(`Error in BigCommerce order sync: ${error.message}`);
+      stats.warnings.push(`Error in BigCommerce order sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 }

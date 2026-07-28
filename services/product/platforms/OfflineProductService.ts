@@ -71,7 +71,7 @@ export class OfflineProductService implements PlatformProductServiceInterface {
 
     // Apply category filter
     if (options.category) {
-      filteredProducts = filteredProducts.filter(p => p.productType === options.category || p.tags?.includes(options.category));
+      filteredProducts = filteredProducts.filter(p => p.productType === options.category || p.tags?.includes(options.category || ''));
     }
 
     // Apply search filter

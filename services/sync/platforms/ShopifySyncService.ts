@@ -363,7 +363,7 @@ export class ShopifySyncService extends BasePlatformSyncService {
               stats.failed++;
               stats.errors.push({
                 entityId: product.id,
-                message: `Failed to sync product to POS: ${error.message || 'Unknown error'}`,
+                message: `Failed to sync product to POS: ${(error instanceof Error ? error.message : String(error)) || 'Unknown error'}`,
                 details: error,
               });
             }
@@ -374,7 +374,7 @@ export class ShopifySyncService extends BasePlatformSyncService {
         }
       }
     } catch (error) {
-      stats.warnings.push(`Error in product sync: ${error.message}`);
+      stats.warnings.push(`Error in product sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -420,7 +420,7 @@ export class ShopifySyncService extends BasePlatformSyncService {
         }
       }
     } catch (error) {
-      stats.warnings.push(`Error in inventory sync: ${error.message}`);
+      stats.warnings.push(`Error in inventory sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -456,7 +456,7 @@ export class ShopifySyncService extends BasePlatformSyncService {
         stats.warnings.push('Category sync from POS to Shopify not yet implemented');
       }
     } catch (error) {
-      stats.warnings.push(`Error in category sync: ${error.message}`);
+      stats.warnings.push(`Error in category sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -489,7 +489,7 @@ export class ShopifySyncService extends BasePlatformSyncService {
         stats.warnings.push('Order sync from POS to Shopify not yet implemented');
       }
     } catch (error) {
-      stats.warnings.push(`Error in order sync: ${error.message}`);
+      stats.warnings.push(`Error in order sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 }

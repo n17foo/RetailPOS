@@ -78,7 +78,7 @@ const RefundScreen: React.FC<ReturnsScreenProps> = ({ onGoBack }) => {
           setRefundHistory(history);
         }
       } catch (err) {
-        logger.error('Failed to fetch refund history:', err);
+        logger.error('Failed to fetch refund history:', err instanceof Error ? err : new Error(String(err)));
       } finally {
         setHistoryLoading(false);
       }
@@ -100,7 +100,7 @@ const RefundScreen: React.FC<ReturnsScreenProps> = ({ onGoBack }) => {
         const items = await getReturnableItems(orderId);
         setReturnableItems(items);
       } catch (err) {
-        logger.error('Failed to fetch returnable items:', err);
+        logger.error('Failed to fetch returnable items:', err instanceof Error ? err : new Error(String(err)));
       } finally {
         setLoadingReturnableItems(false);
       }

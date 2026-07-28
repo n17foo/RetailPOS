@@ -84,7 +84,7 @@ export class WixInventoryService extends BaseInventoryService {
         try {
           const data = await this.apiClient.get<WixInventoryProductResponse>(`stores/v1/products/${productId}`);
           const product = data.product;
-          if (product.variants && product.variants.length > 0) {
+          if (product && product.variants && product.variants.length > 0) {
             for (const variant of product.variants) {
               items.push({
                 productId,
@@ -94,7 +94,7 @@ export class WixInventoryService extends BaseInventoryService {
               });
             }
           } else {
-            items.push({ productId, variantId: productId, sku: product.sku, quantity: product.stock?.quantity || 0 });
+            items.push({ productId, variantId: productId, sku: product?.sku, quantity: product?.stock?.quantity || 0 });
           }
         } catch (error) {
           this.logger.error(

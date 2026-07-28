@@ -76,7 +76,7 @@ export class StripeNfcService implements PaymentServiceInterface {
       this.isInitialized = initSuccess;
       return initSuccess;
     } catch (error) {
-      this.logger.error('Failed to initialize Stripe Terminal SDK:', error);
+      this.logger.error('Failed to initialize Stripe Terminal SDK:', error instanceof Error ? error : new Error(String(error)));
       this.isInitialized = false;
       return false;
     }
@@ -179,7 +179,7 @@ export class StripeNfcService implements PaymentServiceInterface {
 
       return success;
     } catch (error) {
-      this.logger.error('Error connecting to Stripe NFC reader:', error);
+      this.logger.error('Error connecting to Stripe NFC reader:', error instanceof Error ? error : new Error(String(error)));
       this.isConnected = false;
       this.deviceId = null;
       return false;
@@ -471,7 +471,7 @@ export class StripeNfcService implements PaymentServiceInterface {
         timestamp: new Date(),
       };
     } catch (error) {
-      this.logger.error('Error checking transaction status:', error);
+      this.logger.error('Error checking transaction status:', error instanceof Error ? error : new Error(String(error)));
       throw error;
     }
   }

@@ -41,7 +41,7 @@ export class USBScannerService implements ScannerServiceInterface {
 
       return true;
     } catch (error) {
-      this.logger.error('Error connecting to USB device:', error);
+      this.logger.error('Error connecting to USB device:', error instanceof Error ? error : new Error(String(error)));
       return false;
     }
   }
@@ -61,7 +61,7 @@ export class USBScannerService implements ScannerServiceInterface {
       this.deviceId = null;
       this.logger.info('Disconnected from USB scanner');
     } catch (error) {
-      this.logger.error('Error disconnecting from USB device:', error);
+      this.logger.error('Error disconnecting from USB device:', error instanceof Error ? error : new Error(String(error)));
     }
   }
 

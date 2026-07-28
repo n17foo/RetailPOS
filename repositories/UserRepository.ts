@@ -96,7 +96,7 @@ export class UserRepository {
     });
 
     const statement = `UPDATE users SET ${fields.map(field => `${field} = ?`).join(', ')}, updated_at = ? WHERE id = ?`;
-    await db.runAsync(statement, [...values, now, id]);
+    await db.runAsync(statement, [...values, now, id] as (string | number | boolean)[]);
   }
 
   async updatePin(id: string, newPin: string): Promise<void> {

@@ -526,7 +526,7 @@ export function mapGenericProduct(data: GenericProduct, platform: ECommercePlatf
   }
 
   // Handle variants - use provided variants or create default
-  let variants: UnifiedProductVariant[] = [];
+  let variants: UnifiedProductVariant[];
   if (data.variants && data.variants.length > 0) {
     variants = data.variants.map((v, index) => ({
       id: generateVariantId(platform, platformId, v.id),

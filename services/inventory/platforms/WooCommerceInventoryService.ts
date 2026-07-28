@@ -58,7 +58,7 @@ export class WooCommerceInventoryService extends BaseInventoryService {
             productId: product.id.toString(),
             quantity: product.stock_quantity || 0,
             sku: product.sku,
-            updatedAt: new Date(product.date_modified),
+            updatedAt: new Date(product.date_modified || Date.now()),
           });
         } else if (product.type === 'variable' && product.variations && product.variations.length > 0) {
           // For variable products, we need to fetch each variation's inventory
@@ -71,7 +71,7 @@ export class WooCommerceInventoryService extends BaseInventoryService {
                 variantId: variant.id.toString(),
                 quantity: variant.stock_quantity || 0,
                 sku: variant.sku,
-                updatedAt: new Date(variant.date_modified),
+                updatedAt: new Date(variant.date_modified || Date.now()),
               });
             }
           } catch {

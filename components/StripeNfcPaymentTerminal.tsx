@@ -144,7 +144,7 @@ const StripeNfcPaymentTerminal: React.FC<StripeNfcPaymentTerminalProps> = ({
         }
       }
     } catch (err) {
-      logger.error('Payment error:', err);
+      logger.error('Payment error:', err instanceof Error ? err : new Error(String(err)));
       setPaymentStatus('error');
       setError(err instanceof Error ? err.message : 'Unknown payment error occurred');
     } finally {

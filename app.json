@@ -6,11 +6,6 @@
     "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#5B628F"
-    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.n17foo.retail-pos",
@@ -50,6 +45,14 @@
     },
     "plugins": [
       [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#5B628F"
+        }
+      ],
+      [
         "expo-camera",
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera to scan barcodes.",
@@ -63,7 +66,9 @@
           "enableFTS": true
         }
       ],
-      "expo-image"
+      "expo-image",
+      "expo-splash-screen",
+      "expo-font"
     ]
   }
 }

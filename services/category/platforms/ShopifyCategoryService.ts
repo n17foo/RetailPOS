@@ -111,7 +111,7 @@ export class ShopifyCategoryService extends BaseCategoryService {
       return this.mapCollectionToCategory(data.custom_collection);
     } catch (error) {
       this.logger.error({ message: 'Error creating Shopify category:' }, error instanceof Error ? error : new Error(String(error)));
-      throw new Error(`Failed to create category: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Failed to create category: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error });
     }
   }
 
@@ -157,7 +157,7 @@ export class ShopifyCategoryService extends BaseCategoryService {
         { message: `Error updating Shopify category ${categoryId}:` },
         error instanceof Error ? error : new Error(String(error))
       );
-      throw new Error(`Failed to update category: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Failed to update category: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error });
     }
   }
 

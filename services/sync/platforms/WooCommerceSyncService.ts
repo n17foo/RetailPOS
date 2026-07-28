@@ -285,7 +285,7 @@ export class WooCommerceSyncService extends BasePlatformSyncService {
               stats.failed++;
               stats.errors.push({
                 entityId: options.entityIds[i],
-                message: `Failed to sync product: ${error.message || 'Unknown error'}`,
+                message: `Failed to sync product: ${(error instanceof Error ? error.message : String(error)) || 'Unknown error'}`,
                 details: error,
               });
             }
@@ -315,7 +315,7 @@ export class WooCommerceSyncService extends BasePlatformSyncService {
               stats.failed++;
               stats.errors.push({
                 entityId: `product-${i}`,
-                message: `Failed to sync product to POS: ${error.message || 'Unknown error'}`,
+                message: `Failed to sync product to POS: ${(error instanceof Error ? error.message : String(error)) || 'Unknown error'}`,
                 details: error,
               });
             }
@@ -329,7 +329,7 @@ export class WooCommerceSyncService extends BasePlatformSyncService {
         }
       }
     } catch (error) {
-      stats.warnings.push(`Error in WooCommerce product sync: ${error.message}`);
+      stats.warnings.push(`Error in WooCommerce product sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -378,7 +378,7 @@ export class WooCommerceSyncService extends BasePlatformSyncService {
         }
       }
     } catch (error) {
-      stats.warnings.push(`Error in WooCommerce inventory sync: ${error.message}`);
+      stats.warnings.push(`Error in WooCommerce inventory sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -430,7 +430,7 @@ export class WooCommerceSyncService extends BasePlatformSyncService {
               stats.failed++;
               stats.errors.push({
                 entityId: options.entityIds[i],
-                message: `Failed to sync category: ${error.message || 'Unknown error'}`,
+                message: `Failed to sync category: ${(error instanceof Error ? error.message : String(error)) || 'Unknown error'}`,
                 details: error,
               });
             }
@@ -442,7 +442,7 @@ export class WooCommerceSyncService extends BasePlatformSyncService {
         }
       }
     } catch (error) {
-      stats.warnings.push(`Error in WooCommerce category sync: ${error.message}`);
+      stats.warnings.push(`Error in WooCommerce category sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -485,7 +485,7 @@ export class WooCommerceSyncService extends BasePlatformSyncService {
         stats.warnings.push('Order sync from POS to WooCommerce not yet implemented');
       }
     } catch (error) {
-      stats.warnings.push(`Error in WooCommerce order sync: ${error.message}`);
+      stats.warnings.push(`Error in WooCommerce order sync: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 }

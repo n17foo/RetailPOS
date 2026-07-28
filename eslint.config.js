@@ -2,9 +2,7 @@ const js = require('@eslint/js');
 const ts = require('@typescript-eslint/eslint-plugin');
 const tsParser = require('@typescript-eslint/parser');
 const prettier = require('eslint-plugin-prettier');
-const reactPlugin = require('eslint-plugin-react');
 const reactHooks = require('eslint-plugin-react-hooks');
-const reactNative = require('eslint-plugin-react-native');
 const prettierConfig = require('eslint-config-prettier');
 
 module.exports = [
@@ -57,32 +55,15 @@ module.exports = [
         alert: 'readonly',
       },
     },
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
     plugins: {
       '@typescript-eslint': ts,
-      react: reactPlugin,
       'react-hooks': reactHooks,
-      'react-native': reactNative,
       prettier: prettier,
     },
     rules: {
-      // React
-      'react/prop-types': 'error',
-      'react/react-in-jsx-scope': 'error',
-      'react/display-name': 'error',
+      // React Hooks
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'error',
-
-      // React Native
-      'react-native/no-unused-styles': 'error',
-      'react-native/split-platform-components': 'error',
-      'react-native/no-inline-styles': 'error',
-      'react-native/no-color-literals': 'error',
-      'react-native/no-raw-text': 'error',
 
       // TypeScript
       '@typescript-eslint/explicit-function-return-type': 'off',

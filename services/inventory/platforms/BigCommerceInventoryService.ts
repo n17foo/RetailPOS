@@ -72,7 +72,7 @@ export class BigCommerceInventoryService extends BaseInventoryService {
             productId: product.id.toString(),
             quantity: product.inventory_level || 0,
             sku: product.sku,
-            updatedAt: new Date(product.date_modified),
+            updatedAt: new Date(product.date_modified || Date.now()),
           });
         }
         // Handle products with variants
@@ -83,7 +83,7 @@ export class BigCommerceInventoryService extends BaseInventoryService {
               variantId: variant.id.toString(),
               quantity: variant.inventory_level || 0,
               sku: variant.sku,
-              updatedAt: new Date(variant.date_modified || product.date_modified),
+              updatedAt: new Date(variant.date_modified || product.date_modified || Date.now()),
             });
           }
         }

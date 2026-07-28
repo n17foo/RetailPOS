@@ -24,7 +24,7 @@ export function AuthHardwareSettingsTab() {
       const detected = await cardReaderDetection.detectReaders();
       setReaders(detected);
     } catch (error) {
-      logger.error('Failed to detect card readers:', error);
+      logger.error('Failed to detect card readers:', error instanceof Error ? error : new Error(String(error)));
     } finally {
       setDetecting(false);
     }

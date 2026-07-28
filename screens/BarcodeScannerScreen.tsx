@@ -19,10 +19,7 @@ export const BarcodeScannerScreen: React.FC<BarcodeScannerScreenProps> = ({ onSc
   const scannerSettings = useMemo(
     () => ({
       type: (isElectron() && persistedSettings.type === 'camera' ? 'usb' : persistedSettings.type) as
-        | 'camera'
-        | 'bluetooth'
-        | 'usb'
-        | 'qr_hardware',
+        'camera' | 'bluetooth' | 'usb' | 'qr_hardware',
       enabled: persistedSettings.enabled,
       deviceId: persistedSettings.deviceId || (persistedSettings.type === 'camera' ? 'back' : ''),
     }),

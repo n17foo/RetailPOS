@@ -139,7 +139,7 @@ export const SwipeablePanel: React.FC<SwipeablePanelProps> = ({
 
 const styles = StyleSheet.create({
   overlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     backgroundColor: lightColors.textPrimary,
     zIndex: 10,
   },

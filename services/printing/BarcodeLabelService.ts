@@ -93,7 +93,7 @@ export class BarcodeLabelService {
 
       return { success: true, printed, failed };
     } catch (err) {
-      this.logger.error('Failed to print barcode labels:', err);
+      this.logger.error('Failed to print barcode labels:', err instanceof Error ? err : new Error(String(err)));
       return {
         success: false,
         printed: 0,

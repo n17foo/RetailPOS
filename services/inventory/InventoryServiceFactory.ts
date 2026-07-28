@@ -391,7 +391,7 @@ export class InventoryServiceFactory {
    * @param config The configuration from storage
    */
   public configureService(platform: ECommercePlatform, config: PlatformInventoryConfig): void {
-    let service: PlatformInventoryServiceInterface | null = null;
+    let service: PlatformInventoryServiceInterface | null;
 
     switch (platform) {
       case ECommercePlatform.SHOPIFY:

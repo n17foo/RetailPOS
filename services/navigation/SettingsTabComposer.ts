@@ -24,17 +24,7 @@ import { permissionService } from '../permissions/PermissionService';
 type CapabilityFeatureKey = Exclude<keyof PlatformCapabilities, 'basketMode'>;
 
 export type SettingsTabKey =
-  | 'generic'
-  | 'pos'
-  | 'auth'
-  | 'payment'
-  | 'hardware'
-  | 'hardwareStatus'
-  | 'ecommerce'
-  | 'offline'
-  | 'receipt'
-  | 'multiregister'
-  | 'theme';
+  'generic' | 'pos' | 'auth' | 'payment' | 'hardware' | 'hardwareStatus' | 'ecommerce' | 'offline' | 'receipt' | 'multiregister' | 'theme';
 
 export interface ComposedSettingsTab {
   key: SettingsTabKey;

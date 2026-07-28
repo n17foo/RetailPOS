@@ -9,7 +9,7 @@ interface ProductCardProps {
   id: string;
   name: string;
   price: number;
-  image: ImageSourcePropType;
+  image: ImageSourcePropType | null;
   onAddToCart: (id: string, quantity: number) => void;
   inBasket?: boolean;
   initialQuantity?: number;
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   outOfStockOverlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     backgroundColor: lightColors.overlayLight,
     alignItems: 'center',
     justifyContent: 'center',

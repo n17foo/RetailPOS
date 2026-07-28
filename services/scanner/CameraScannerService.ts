@@ -33,7 +33,7 @@ export class CameraScannerService implements ScannerServiceInterface {
       this.logger.info(`Camera permission ${this.hasPermission ? 'granted' : 'denied'}`);
       return this.hasPermission;
     } catch (error) {
-      this.logger.error('Error requesting camera permission:', error);
+      this.logger.error('Error requesting camera permission:', error instanceof Error ? error : new Error(String(error)));
       this.connected = false;
       this.hasPermission = false;
       return false;
@@ -110,7 +110,7 @@ export class CameraScannerService implements ScannerServiceInterface {
         return [];
       }
     } catch (error) {
-      this.logger.error('Error checking camera permissions:', error);
+      this.logger.error('Error checking camera permissions:', error instanceof Error ? error : new Error(String(error)));
 
       // Return an empty array if there's an error
       return [];

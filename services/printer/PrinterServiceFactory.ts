@@ -25,7 +25,7 @@ export class PrinterServiceFactory {
   private printersLoaded = false;
 
   // Single unified printer service instance for all printer types
-  private unifiedPrinterService: BasePrinterService;
+  private unifiedPrinterService!: BasePrinterService;
 
   // Currently active printer service and config
   private activePrinterService: BasePrinterService | null = null;
@@ -62,7 +62,7 @@ export class PrinterServiceFactory {
       } catch (error) {
         const msg = error instanceof Error ? error.message : String(error);
         factoryLogger.error({ message: 'Critical error initializing printer service' }, error instanceof Error ? error : new Error(msg));
-        throw new Error('Failed to initialize printer service: ' + msg);
+        throw new Error('Failed to initialize printer service: ' + msg, { cause: error });
       }
     }
 

@@ -95,7 +95,7 @@ export class BigCommerceCategoryService extends BaseCategoryService {
       return this.mapCategory(data.data);
     } catch (error) {
       this.logger.error({ message: 'Error creating BigCommerce category:' }, error instanceof Error ? error : new Error(String(error)));
-      throw new Error(`Failed to create category: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Failed to create category: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error });
     }
   }
 
@@ -128,7 +128,7 @@ export class BigCommerceCategoryService extends BaseCategoryService {
         { message: `Error updating BigCommerce category ${categoryId}:` },
         error instanceof Error ? error : new Error(String(error))
       );
-      throw new Error(`Failed to update category: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Failed to update category: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error });
     }
   }
 

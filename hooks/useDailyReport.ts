@@ -55,7 +55,7 @@ export const useDailyReport = (): UseDailyReportReturn => {
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to open shift';
       setError(message);
-      throw new Error(message);
+      throw new Error(message, { cause: err });
     }
   }, []);
 
@@ -70,7 +70,7 @@ export const useDailyReport = (): UseDailyReportReturn => {
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Failed to close shift';
         setError(message);
-        throw new Error(message);
+        throw new Error(message, { cause: err });
       }
     },
     [loadShiftHistory]
@@ -83,7 +83,7 @@ export const useDailyReport = (): UseDailyReportReturn => {
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to generate report';
       setError(message);
-      throw new Error(message);
+      throw new Error(message, { cause: err });
     }
   }, []);
 

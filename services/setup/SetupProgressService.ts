@@ -55,7 +55,7 @@ export class SetupProgressService {
       const stored = await keyValueRepository.getObject<SetupProgress>(SETUP_PROGRESS_KEY);
       this.cached = stored ?? { ...DEFAULT_PROGRESS };
     } catch (err) {
-      this.logger.warn({ message: 'Failed to load setup progress, using defaults', ...err });
+      this.logger.warn({ message: 'Failed to load setup progress, using defaults', ...(err as Record<string, unknown>) });
       this.cached = { ...DEFAULT_PROGRESS };
     }
     return this.cached;

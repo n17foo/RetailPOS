@@ -59,7 +59,7 @@ export class StripeService implements PaymentServiceInterface {
 
       return connected;
     } catch (error) {
-      this.logger.error('Error connecting to Stripe terminal:', error);
+      this.logger.error('Error connecting to Stripe terminal:', error instanceof Error ? error : new Error(String(error)));
       return false;
     }
   }
@@ -100,7 +100,7 @@ export class StripeService implements PaymentServiceInterface {
       this.logger.info(`Payment processing result: ${result.success ? 'success' : 'failed'}`);
       return result;
     } catch (error) {
-      this.logger.error('Error processing payment:', error);
+      this.logger.error('Error processing payment:', error instanceof Error ? error : new Error(String(error)));
       return {
         success: false,
         errorMessage: error instanceof Error ? error.message : 'Payment processing failed',
@@ -143,7 +143,7 @@ export class StripeService implements PaymentServiceInterface {
       this.logger.info(`Discovered ${this.discoveredReaders.length} Stripe terminals`);
       return this.discoveredReaders;
     } catch (error) {
-      this.logger.error('Error discovering Stripe terminals:', error);
+      this.logger.error('Error discovering Stripe terminals:', error instanceof Error ? error : new Error(String(error)));
       // Return cached readers on error
       return this.discoveredReaders;
     }
@@ -179,7 +179,7 @@ export class StripeService implements PaymentServiceInterface {
         this.logger.error('Failed to disconnect from Stripe terminal');
       }
     } catch (error) {
-      this.logger.error('Error disconnecting from Stripe terminal:', error);
+      this.logger.error('Error disconnecting from Stripe terminal:', error instanceof Error ? error : new Error(String(error)));
       // Reset local state even on error to avoid stuck state
       this.isConnected = false;
       this.deviceId = null;
@@ -238,7 +238,7 @@ export class StripeService implements PaymentServiceInterface {
         timestamp: new Date(),
       };
     } catch (error) {
-      this.logger.error('Error voiding transaction:', error);
+      this.logger.error('Error voiding transaction:', error instanceof Error ? error : new Error(String(error)));
       return {
         success: false,
         errorMessage: error instanceof Error ? error.message : 'Void transaction failed',
@@ -269,7 +269,7 @@ export class StripeService implements PaymentServiceInterface {
         amount: success ? amount : undefined,
       };
     } catch (error) {
-      this.logger.error('Error refunding transaction:', error);
+      this.logger.error('Error refunding transaction:', error instanceof Error ? error : new Error(String(error)));
       return {
         success: false,
         errorMessage: error instanceof Error ? error.message : 'Refund transaction failed',

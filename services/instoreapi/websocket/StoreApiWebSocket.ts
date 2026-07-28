@@ -151,7 +151,7 @@ export class StoreApiWebSocket extends EventEmitter {
     try {
       this.ws = new WebSocket(wsUrl);
     } catch (err) {
-      this.logger.error('Failed to create WebSocket', err);
+      this.logger.error('Failed to create WebSocket', err instanceof Error ? err : new Error(String(err)));
       this.scheduleReconnect();
       return;
     }

@@ -23,7 +23,7 @@ Settings is the configuration hub for the POS. It is accessible from More → Se
 | `pos`           | POS Config     | 🏪   | Tax rate, max sync retries, drawer behaviour       |
 | `auth`          | Authentication | 🔐   | Auth methods, primary method, PIN/biometric config |
 | `payment`       | Payment        | 💳   | Payment provider, terminal device ID               |
-| `printer`       | Printer        | 🖨   | Printer connection, paper width, model             |
+| `printer`       | Printer        | 🖨    | Printer connection, paper width, model             |
 | `scanner`       | Scanner        | 📷   | Scanner type, BLE UUIDs, device ID                 |
 | `ecommerce`     | E-commerce     | 🛒   | Platform selection, API credentials                |
 | `offline`       | Offline        | 📴   | Offline mode management, sync controls             |

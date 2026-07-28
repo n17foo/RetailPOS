@@ -126,9 +126,9 @@ export const Button: React.FC<ButtonProps> = ({
       borderWidth: variant === 'outline' ? 1 : 0,
       ...getPadding(),
     },
-    fullWidth && styles.fullWidth,
-    variant !== 'ghost' && variant !== 'outline' && elevation.low,
-    style,
+    fullWidth ? styles.fullWidth : {},
+    variant !== 'ghost' && variant !== 'outline' ? elevation.low : {},
+    style || {},
   ];
 
   const textStyles: TextStyle[] = [
@@ -137,7 +137,7 @@ export const Button: React.FC<ButtonProps> = ({
       color: getTextColor(),
       fontSize: getFontSize(),
     },
-    textStyle,
+    textStyle || {},
   ];
 
   return (

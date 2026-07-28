@@ -59,7 +59,7 @@ const ReorderPointConfigScreen: React.FC = () => {
           sku: product.sku,
           reorderPoint: config?.reorder_point,
           reorderQty: config?.reorder_qty,
-          defaultVendorId: config?.default_vendor_id,
+          defaultVendorId: config?.default_vendor_id || undefined,
         };
       });
 

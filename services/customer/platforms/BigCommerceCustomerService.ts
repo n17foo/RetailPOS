@@ -76,7 +76,9 @@ export class BigCommerceCustomerService extends BaseCustomerService {
 
         const body = await this.apiClient.get<BigCommerceCustomersResponse>('customers', params);
         const customers: PlatformCustomer[] = (body.data || []).map(c => this.mapCustomer(c));
-        const hasMore = !!(body.meta?.pagination?.total_pages && body.meta.pagination.current_page < body.meta.pagination.total_pages);
+        const hasMore = !!(
+          body.meta?.pagination?.total_pages && (body.meta.pagination.current_page ?? 0) < body.meta.pagination.total_pages
+        );
         return { customers, hasMore, nextCursor: hasMore ? String((body.meta?.pagination?.current_page || 1) + 1) : undefined };
       });
     } catch (error) {
